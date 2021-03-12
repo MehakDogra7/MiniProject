@@ -31,11 +31,11 @@ public class CalculatorTest {
 //        assertNotEquals("Subtracting two double numbers for False Positive", -7.3, calculator.fact(2.1, 3.2), DELTA);
 //    }
 
-    @Test
-    public void logarithms(){
-        assertEquals("Logs of positive number with result in integers", 1, calculator.logar(10), DELTA);
-        assertEquals("Log of positive number with result in decimals", 2.69897, calculator.logar(500), DELTA);
-    }
+//    @Test
+//    public void logarithms(){
+//        assertEquals("Logs of positive number with result in integers", 1, calculator.logar(10), DELTA);
+//        assertEquals("Log of positive number with result in decimals", 2.69897, calculator.logar(500), DELTA);
+//    }
 
 //    @Test
 //    public void multiplyingFalsePositive(){
@@ -44,7 +44,7 @@ public class CalculatorTest {
 //    }
 
     @Test
-    public void dividingTruePositive(){
+    public void PowerFunction(){
         assertEquals("", 4, calculator.power(2, 2), DELTA);
         assertEquals("", 1, calculator.power(0, 0), DELTA);
         assertEquals("", 10, calculator.power(10,1), DELTA);

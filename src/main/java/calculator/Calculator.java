@@ -90,7 +90,7 @@ public class Calculator {
     public double fact(double number1) {
         logger.info("[Factorial - Input] - " + number1);
         double result = 1;
-        for (int i = 1; i < number1; i++) {
+        for (int i = 1; i <= number1; i++) {
             result *= i;
         }
         logger.info("[Factorial - Output] - " + result);
