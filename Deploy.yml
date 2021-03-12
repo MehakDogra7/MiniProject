@@ -8,11 +8,3 @@
     - name: Pulling the Image
       shell:
         cmd: docker pull mehakdogra0067/miniprojectimage:latest
-
-#---
-#- name: Pull and RUN docker image of mini project
-#  hosts: all
-#  tasks:
-#    - name: Pull image
-#      shell:
-#        cmd: docker pull mehakdogra0067/miniprojectimage
