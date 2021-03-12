@@ -1,0 +1,8 @@
+---
+- name: Pull and RUN docker image of mini project
+  hosts: all
+  tasks:
+    - name: Pull MehakDogra7/MiniProject
+      docker_image:
+        name: mehakdogra0067/miniprojectimage
+          source: pull
