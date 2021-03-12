@@ -1,8 +1,18 @@
 ---
-- name: Pull and RUN docker image of mini project
-  hosts: all
+- name: Pull the image in production host and create the container
+  hosts: Host
   tasks:
-    - name: Pull MehakDogra7/MiniProject
-      docker_image:
-        name: mehakdogra0067/miniprojectimage
-          source: pull
+    - name: Docker login
+      shell:
+        cmd: docker login
+    - name: Pulling the Image
+      shell:
+        cmd: docker pull mehakdogra0067/scientific_calculator:latest
+
+#---
+#- name: Pull and RUN docker image of mini project
+#  hosts: all
+#  tasks:
+#    - name: Pull image
+#      shell:
+#        cmd: docker pull mehakdogra0067/miniprojectimage
