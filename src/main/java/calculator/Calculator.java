@@ -21,6 +21,7 @@ public class Calculator {
         Scanner scanner = new Scanner(System.in);
         double number = 0.0, number1 = 0.0, number2 = 0.0;
         do {
+            System.out.println("*****************************************************************");
             System.out.println("Welcome to the devops Calculator....\nPlease select the operation...\n\n");
             System.out.print("Press 1 to Square Root\nPress 2 to Factorial\nPress 3 to Logarithm\nPress 4 to Power\n" +
                     "Press any other key to exit\n\n\nEnter your choice: ");
@@ -76,36 +77,72 @@ public class Calculator {
     ● Natural logarithm (base е) - ln(x)
     ● Power function - x
     * */
-    public double root(double number1) {
-        logger.info("[Square_root - Input] - " + number1);
-        double result;
-        if (number1 > 0) {
-            result = Math.sqrt(number1);
-        } else {
-            result = 0;
+    public double root(double num) {
+        double result = 0;
+        try{
+            logger.info("Calculating Square root  of number " + num);
+            if(num < 0){
+                result = Double.NaN;
+                throw new ArithmeticException("Case of NaN squareRoot of < 0");
+            }
+            else{
+                result = Math.sqrt(num);
+            }
+        }catch(ArithmeticException err){
+            logger.error("Number cannot be negative " + err.getMessage());
+        }finally {
+            logger.info("Result of squareRoot is : " + result);
         }
-        logger.info("[Square_root - Output] - " + result);
         return result;
     }
-    public double fact(double number1) {
-        logger.info("[Factorial - Input] - " + number1);
+    public double fact(double num) {
         double result = 1;
-        for (int i = 1; i <= number1; i++) {
-            result *= i;
+        try{
+            if(num < 0) {
+                result = Double.NaN;
+                throw new ArithmeticException("Case of NaN factorial if < 0");
+            }
+
+            if(num == 0 || num == 1) return 1;
+
+            for(int i = 1; i <= num; i++){
+                result *= i;
+            }
         }
-        logger.info("[Factorial - Output] - " + result);
+        catch(ArithmeticException err) {
+            logger.error("Number cannot be negative " + err.getMessage());
+        }
+        finally {
+            logger.info("Result of factorial is: " + result);
+        }
+
         return result;
     }
-    public double power(double number1, double number2) {
-        logger.info("[Power - Input] - " + number1 + ", "+ number2);
-        double result = Math.pow(number1, number2);
-        logger.info("[Power - Output] - " + result);
-        return result;
+    public double power(double num, double num2) {
+        double result;
+        logger.info("Calculating Power  of two numbers " + num + " and " + num2);
+        result = Math.pow(num, num2);
+        logger.info("Result of power is : " + result);
+        return Math.pow(num, num2);
     }
-    public double logar(double number1) {
-        logger.info("[Logarithm - Input] - " + number1);
-        double result = Math.log(number1);
-        logger.info("[Logarithm - Output] - " + result);
+    public double logar(double num) {
+        double result = 0;
+        try{
+            logger.info("Calculating Natural log of " + num);
+            if(num <= 0){
+                result = Double.NaN;
+                throw new ArithmeticException("Case of NaN log of <= 0");
+            }
+            else{
+                result = Math.log(num);
+            }
+        }
+        catch(ArithmeticException err){
+            logger.error("Number cannot be negative " + err.getMessage());
+        }
+        finally {
+            logger.info("Result of naturalLog is : " + result);
+        }
         return result;
     }
 }

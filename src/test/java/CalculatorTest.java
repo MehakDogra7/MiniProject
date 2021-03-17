@@ -2,60 +2,61 @@ import calculator.Calculator;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class CalculatorTest {
     private static final double DELTA = 1e-15;
     Calculator calculator = new Calculator();
 
     @Test
-    public void sqrt(){
-        assertEquals("Square Root of a positive number ", 2, calculator.root(4), DELTA);
-        assertEquals("Square Root of a positive number", 3, calculator.root(9), DELTA);
+    public void squareRootTruePositive(){
+        assertEquals("Square Root of number for True Positive", 3.0, calculator.root(9), DELTA);
+        assertEquals("Square Root of number for True Positive", 4.0, calculator.root(16), DELTA);
+        assertEquals("Square Root of number for True Positive", Double.NaN, calculator.root(-10), DELTA);
     }
-//
-//    @Test
-//    public void addingFalsePositive(){
-//        assertNotEquals("Adding two integer numbers for False Positive", 6, calculator.root(36), DELTA);
-//        assertNotEquals("Adding two double numbers for False Positive", 7, calculator.root(49), DELTA);
-//    }
 
     @Test
-    public void factorial(){
-        assertEquals("Factorial of the number ", 120, calculator.fact(5), DELTA);
-        assertEquals("Factorial of the number ", 1, calculator.fact(0), DELTA);
+    public void squareRootFalsePositive(){
+        assertNotEquals("Square Root of number for False Positive", 4.0, calculator.root(10), DELTA);
+        assertNotEquals("Square Root of number for False Positive", 5.0, calculator.root(16), DELTA);
+        assertNotEquals("Square Root of number for False Positive", 5.0, calculator.root(-16), DELTA);
     }
-
-//    @Test
-//    public void falseFact(){
-//        assertNotEquals("Subtracting two integer numbers for False Positive", 0, calculator.fact(2), DELTA);
-//        assertNotEquals("Subtracting two double numbers for False Positive", -7.3, calculator.fact(2.1, 3.2), DELTA);
-//    }
-
-//    @Test
-//    public void logarithms(){
-//        assertEquals("Logs of positive number with result in integers", 1, calculator.logar(10), DELTA);
-//        assertEquals("Log of positive number with result in decimals", 2.69897, calculator.logar(500), DELTA);
-//    }
-
-//    @Test
-//    public void multiplyingFalsePositive(){
-//        assertNotEquals("Multiplying two integer numbers for False Positive", 6, calculator.multiply(2, 2), DELTA);
-//        assertNotEquals("Multiplying two double numbers for False Positive", 7.3, calculator.multiply(2.1, 3.2), DELTA);
-//    }
 
     @Test
-    public void PowerFunction(){
-        assertEquals("", 4, calculator.power(2, 2), DELTA);
-        assertEquals("", 1, calculator.power(0, 0), DELTA);
-        assertEquals("", 10, calculator.power(10,1), DELTA);
-        assertEquals("", 1, calculator.power(-1, 0), DELTA);
+    public void factorialTruePositive(){
+        assertEquals("Factorial of number for True positive", 6.0,calculator.fact(3), DELTA);
+        assertEquals("Factorial of number for True positive", 120.0,calculator.fact(5), DELTA);
     }
 
-//    @Test
-//    public void dividingFalsePositive(){
-//        assertNotEquals("Dividing two integer numbers for True Positive", 1, calculator.divide(2.3, 1.3), DELTA);
-//        assertNotEquals("Dividing two double numbers for True Positive", 0, calculator.divide(0, 0), DELTA);
-//        assertNotEquals("Dividing two double numbers for True Positive", 1, calculator.divide(1, 0), DELTA);
-//        assertNotEquals("Dividing two double numbers for True Positive", -1, calculator.divide(-1, 0), DELTA);
-//    }
+    @Test
+    public void factorialFalsePositive(){
+        assertNotEquals("Factorial of number for False positive", 8.0,calculator.fact(3), DELTA);
+        assertNotEquals("Factorial of number for False positive", 60.0,calculator.fact(5), DELTA);
+    }
+
+    @Test
+    public void naturalLogTruePositive(){
+        assertEquals("Factorial of number for True positive", 2.833213344056216,calculator.logar(17), DELTA);
+        assertEquals("Factorial of number for True positive", 1.791759469228055,calculator.logar(6), DELTA);
+        assertEquals("Factorial of number for True positive", Double.NaN, calculator.logar(0), DELTA);
+    }
+
+    @Test
+    public void naturalLogFalsePositive(){
+        assertNotEquals("Factorial of number for False positive", 2.833213344056216,calculator.logar(14), DELTA);
+        assertNotEquals("Factorial of number for False positive", 1.791759469228055,calculator.logar(9), DELTA);
+        assertNotEquals("Factorial of number for False positive", 0, calculator.logar(0), DELTA);
+    }
+
+    @Test
+    public void powerTruePositive(){
+        assertEquals("Factorial of number for True positive", 4.0,calculator.power(2, 2), DELTA);
+        assertEquals("Factorial of number for True positive", 27.0,calculator.power(3,3), DELTA);
+    }
+
+    @Test
+    public void powerFalsePositive(){
+        assertNotEquals("Factorial of number for False positive", 4.0,calculator.power(2, 3), DELTA);
+        assertNotEquals("Factorial of number for False positive", 5.0,calculator.power(3,3), DELTA);
+    }
 }
